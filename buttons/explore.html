@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Explore Button</title>
+  <style>
+    .explore-button {
+      background-color: #39ff14;
+      color: #000;
+      border: none;
+      border-radius: 9999px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .explore-button:hover,
+    .explore-button:focus {
+      filter: brightness(0.95);
+    }
+
+    .explore-button svg {
+      width: 1em;
+      height: 1em;
+    }
+  </style>
+</head>
+<body style="background-color: #fff; margin: 20px;">
+
+  <a href="https://example.cayden.one" class="explore-button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+         xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polygon points="16 10 10 10 8 16 14 16 16 10"></polygon>
+    </svg>
+    Explore
+  </a>
+
+</body>
+</html>
