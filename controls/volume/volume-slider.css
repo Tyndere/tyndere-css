@@ -1,0 +1,72 @@
+<div class="volume-indicator">
+  <div class="speaker-icon">🔊</div>
+  <div class="volume-bar">
+    <div class="volume-level" style="height: 50%;"></div>
+  </div>
+</div>
+
+<style>
+  .volume-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .speaker-icon {
+    font-size: 24px;
+    color: #333;
+  }
+  .volume-bar {
+    width: 30px;
+    height: 150px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+  }
+  .volume-level {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(180deg, #4caf50, #81c784);
+    border-radius: 10px;
+    transition: height 0.1s ease-out;
+  }
+</style>
+
+<script>
+  (function() {
+    const volumeBar = document.querySelector('.volume-bar');
+    const volumeLevel = document.querySelector('.volume-level');
+
+    function setVolumeFromPointer(event) {
+      const rect = volumeBar.getBoundingClientRect();
+      let offsetY = event.clientY - rect.top;
+      let heightPercent = (rect.height - offsetY) / rect.height;
+      heightPercent = Math.max(0, Math.min(heightPercent, 1));
+      volumeLevel.style.height = heightPercent * 100 + '%';
+    }
+
+    let isDragging = false;
+
+    volumeBar.addEventListener('pointerdown', (event) => {
+      isDragging = true;
+      setVolumeFromPointer(event);
+      volumeBar.setPointerCapture(event.pointerId);
+    });
+
+    volumeBar.addEventListener('pointermove', (event) => {
+      if (!isDragging) return;
+      setVolumeFromPointer(event);
+    });
+
+    volumeBar.addEventListener('pointerup', (event) => {
+      isDragging = false;
+      volumeBar.releasePointerCapture(event.pointerId);
+    });
+
+    volumeBar.addEventListener('pointercancel', (event) => {
+      isDragging = false;
+      volumeBar.releasePointerCapture(event.pointerId);
+    });
+  })();
+</script>
